@@ -20,7 +20,7 @@ public class Graph {
 
         //check if the finish is not inserted yet in the graph, then insert it and give it an empty array list
         if (!graph.containsKey(finish)) {
-            graph.put(finish, new ArrayList<>());
+            graph.put(finish, new ArrayList<String>());
         }
     }
 
@@ -58,7 +58,9 @@ public class Graph {
         for (int i = 0; i < size; i++) {
             String key = (String) graph.keySet().toArray()[i];
             if (graph.get(key).contains(node) || graph.get(node).contains(key)) {
-                neighbors.add(key);
+                if (!neighbors.contains(key)) {
+                    neighbors.add(key);
+                }
             }
         }
         return neighbors;

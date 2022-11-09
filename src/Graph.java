@@ -83,13 +83,23 @@ public class Graph {
         return degree;
     }
 
-    boolean findPath(String start, String finish, int length) {
-        boolean pathExists = false;
-        ArrayList<String> successors = graph.get(start);
-        for (int i = 0; i < length - 2; i++) {
+    public boolean findPath(String start, String finish, int length) {
+        int indexOfStart = indexOfNode(start);
+        int indexOfFinish = indexOfNode(finish);
+        boolean[][] distMatToPower = Helper.matrixToPower(disMat, length);
+        return distMatToPower[indexOfFinish][indexOfStart];
+    }
 
+    public int indexOfNode(String node) {
+        int index = -1;
+        Object[] keys = graph.keySet().toArray();
+        for (int i = 0; i < keys.length; i++) {
+            if (node.equals(keys[i])) {
+                index = i;
+                break;
+            }
         }
-        return pathExists;
+        return index;
     }
 
 }

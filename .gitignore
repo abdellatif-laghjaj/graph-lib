@@ -2,3 +2,6 @@
 .idea/misc.xml
 /.idea/
 /out/
+*.class
+out/production/TP2_RO/Graph.class
+out/production/TP2_RO/Main.class

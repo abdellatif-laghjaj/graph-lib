@@ -101,18 +101,43 @@ public class Graph {
     }
 
     public boolean findPath(String start, String finish, int length) {
+        if (length == 0) {
+            return start.equals(finish);
+        } else {
+            for (String neighbor : getNeighbors(start)) {
+                if (findPath(neighbor, finish, length - 1)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     public boolean findPath(String start, String finish) {
-        return false;
+        return findPath(start, finish, graph.size());
     }
 
     public boolean isHamilton(ArrayList<String> path) {
-        return false;
+        if (path.size() != graph.size()) {
+            return false;
+        }
+        for (int i = 0; i < path.size() - 1; i++) {
+            if (!graph.get(path.get(i)).contains(path.get(i + 1))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isEuler(ArrayList<String> path) {
-        return false;
+        if (path.size() != graph.size() + 1) {
+            return false;
+        }
+        for (int i = 0; i < path.size() - 1; i++) {
+            if (!graph.get(path.get(i)).contains(path.get(i + 1))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

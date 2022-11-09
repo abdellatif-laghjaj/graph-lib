@@ -5,10 +5,16 @@ public class Graph {
     public HashMap<String, ArrayList<String>> graph;
     public boolean[][] disMat;
 
+    //initialize the graph
     public Graph() {
         graph = new HashMap<String, ArrayList<String>>();
     }
 
+    /*
+     * addEdge method adds an edge between two vertices
+     * if the vertices are not present in the graph, it adds them
+     * else it adds the edge between the vertices
+     * */
     public void addEdge(String start, String finish) {
         if (graph.containsKey(start)) {
             graph.get(start).add(finish);
@@ -18,16 +24,23 @@ public class Graph {
             graph.put(start, list);
         }
 
-        //check if the finish is not inserted yet in the graph, then insert it and give it an empty array list
+        /*
+            check if the finish is not inserted yet in the graph,
+            then insert it and give it an empty array list
+        */
         if (!graph.containsKey(finish)) {
             graph.put(finish, new ArrayList<>());
         }
     }
 
+    //display the graph to the console
     public void displayGraph() {
         System.out.println(this.graph);
     }
 
+    /*
+     * crateDistMat method creates a distance matrix
+     * */
     public void crateDistMat(HashMap<String, ArrayList<String>> graph) {
         int size = graph.size();
         disMat = new boolean[size][size];
@@ -41,6 +54,7 @@ public class Graph {
         }
     }
 
+    //display the distance matrix to the console
     public void displayDistMat() {
         System.out.println("\n############ Distance Matrix ############");
         for (boolean[] booleans : disMat) {
@@ -52,6 +66,9 @@ public class Graph {
         }
     }
 
+    /*
+     method that returns the neighbors of a node
+     */
     public ArrayList<String> getNeighbors(String node) {
         ArrayList<String> neighbors = new ArrayList<>();
         int size = graph.size();
@@ -64,11 +81,13 @@ public class Graph {
         return neighbors;
     }
 
+    //display the neighbors of a node to the console
     public void displayNeighbors(String node) {
         System.out.println("\n############ Neighbors of node " + node + " ############");
         System.out.println(getNeighbors(node));
     }
 
+    //method that returns the degree of a node
     public int getDegree(String node) {
         int degree = 0;
         int size = graph.size();

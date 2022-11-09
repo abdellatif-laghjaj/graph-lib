@@ -82,4 +82,14 @@ public class Graph {
         }
         return degree;
     }
+
+    boolean findPath(String start, String finish, int length) {
+        boolean pathExists = false;
+        ArrayList<String> successors = graph.get(start);
+        for (int i = 0; i < length - 2; i++) {
+
+        }
+        return pathExists;
+    }
+
 }

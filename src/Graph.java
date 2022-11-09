@@ -72,11 +72,11 @@ public class Graph {
     }
 
     public int getDegree(String node) {
-        int degree = 0;
+        int degree = graph.get(node).size();
         int size = graph.size();
         for (int i = 0; i < size; i++) {
             String key = (String) graph.keySet().toArray()[i];
-            if (graph.get(key).contains(node) || graph.get(node).contains(key)) {
+            if (graph.get(key).contains(node)) {
                 degree++;
             }
         }

@@ -42,7 +42,7 @@ public class Graph {
     }
 
     public void displayDistMat() {
-        System.out.println("\n############ Distance Matrix ############");
+        System.out.println("\n############\tDistance Matrix \t############");
         for (boolean[] booleans : disMat) {
             System.out.print("[\t");
             for (int j = 0; j < disMat.length; j++) {
@@ -58,7 +58,7 @@ public class Graph {
         for (int i = 0; i < size; i++) {
             String key = (String) graph.keySet().toArray()[i];
             if (graph.get(key).contains(node) || graph.get(node).contains(key)) {
-                if (!neighbors.contains(key)) {
+                if (!neighbors.contains(key) && !node.equals(key)) {
                     neighbors.add(key);
                 }
             }
@@ -67,7 +67,7 @@ public class Graph {
     }
 
     public void displayNeighbors(String node) {
-        System.out.println("\n############ Neighbors of node " + node + " ############");
+        System.out.println("\n############\tNeighbors of node " + node + " \t############");
         System.out.println(getNeighbors(node));
     }
 

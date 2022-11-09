@@ -34,9 +34,10 @@ public class Main {
         graph.crateDistMat(graph.graph);
         graph.displayDistMat();
 
-        graph.displayNeighbors("Y");
-        System.out.println(graph.getDegree("Y"));
         graph.displayNeighbors("X");
         System.out.println(graph.getDegree("X"));
+
+        graph.displayNeighbors("Y");
+        System.out.println(graph.getDegree("Y"));
     }
 }

@@ -99,4 +99,20 @@ public class Graph {
         }
         return degree;
     }
+
+    public boolean findPath(String start, String finish, int length) {
+        return false;
+    }
+
+    public boolean findPath(String start, String finish) {
+        return false;
+    }
+
+    public boolean isHamilton(ArrayList<String> path) {
+        return false;
+    }
+
+    public boolean isEuler(ArrayList<String> path) {
+        return false;
+    }
 }

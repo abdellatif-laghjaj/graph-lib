@@ -44,9 +44,9 @@ public class Graph {
     public void displayDistMat() {
         System.out.println("\n############ Distance Matrix ############");
         for (boolean[] booleans : disMat) {
-            System.out.print("[");
+            System.out.print("[\t");
             for (int j = 0; j < disMat.length; j++) {
-                System.out.print("\t" + booleans[j] + " ");
+                System.out.print(booleans[j] + "\t");
             }
             System.out.print("]\n");
         }

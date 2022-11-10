@@ -120,17 +120,16 @@ public class Graph {
         }
         return index;
     }
-        // if (length == 0) {
-        //     return start.equals(finish);
-        // } else {
-        //     for (String neighbor : getNeighbors(start)) {
-        //         if (findPath(neighbor, finish, length - 1)) {
-        //             return true;
-        //         }
-        //     }
-        // }
-        // return false;
-    }
+    // if (length == 0) {
+    //     return start.equals(finish);
+    // } else {
+    //     for (String neighbor : getNeighbors(start)) {
+    //         if (findPath(neighbor, finish, length - 1)) {
+    //             return true;
+    //         }
+    //     }
+    // }
+    // return false;
 
     public boolean findPath(String start, String finish) {
         return findPath(start, finish, graph.size());

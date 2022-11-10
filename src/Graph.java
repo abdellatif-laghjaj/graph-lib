@@ -113,4 +113,21 @@ public class Graph {
         return isFound;
     }
 
+    public boolean isHamilton(ArrayList<String> path) {
+        boolean isHamilton = true;
+        for (int i = 0; i < path.size(); i++) {
+            if (!graph.get(path.get(i + 1)).contains(path.get(i)) || !graph.get(path.get(i)).contains(path.get(i + 1))) {
+                isHamilton = false;
+                break;
+            }
+        }
+        return isHamilton;
+    }
+
+    public boolean isEuler(ArrayList<String> path) {
+        boolean isEuler = false;
+
+        return isEuler;
+    }
+
 }

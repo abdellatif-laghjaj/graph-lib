@@ -29,7 +29,7 @@ public class Graph {
             then insert it and give it an empty array list
         */
         if (!graph.containsKey(finish)) {
-            graph.put(finish, new ArrayList<>());
+            graph.put(finish, new ArrayList<String>());
         }
     }
 
@@ -56,11 +56,11 @@ public class Graph {
 
     //display the distance matrix to the console
     public void displayDistMat() {
-        System.out.println("\n############ Distance Matrix ############");
+        System.out.println("\n############\tDistance Matrix \t############");
         for (boolean[] booleans : disMat) {
-            System.out.print("[");
+            System.out.print("[\t");
             for (int j = 0; j < disMat.length; j++) {
-                System.out.print("\t" + booleans[j] + " ");
+                System.out.print(booleans[j] + "\t");
             }
             System.out.print("]\n");
         }
@@ -75,7 +75,9 @@ public class Graph {
         for (int i = 0; i < size; i++) {
             String key = (String) graph.keySet().toArray()[i];
             if (graph.get(key).contains(node) || graph.get(node).contains(key)) {
-                neighbors.add(key);
+                if (!neighbors.contains(key) && !node.equals(key)) {
+                    neighbors.add(key);
+                }
             }
         }
         return neighbors;
@@ -83,17 +85,17 @@ public class Graph {
 
     //display the neighbors of a node to the console
     public void displayNeighbors(String node) {
-        System.out.println("\n############ Neighbors of node " + node + " ############");
+        System.out.println("\n############\tNeighbors of node " + node + " \t############");
         System.out.println(getNeighbors(node));
     }
 
     //method that returns the degree of a node
     public int getDegree(String node) {
-        int degree = 0;
+        int degree = graph.get(node).size();
         int size = graph.size();
         for (int i = 0; i < size; i++) {
             String key = (String) graph.keySet().toArray()[i];
-            if (graph.get(key).contains(node) || graph.get(node).contains(key)) {
+            if (graph.get(key).contains(node)) {
                 degree++;
             }
         }
@@ -101,16 +103,33 @@ public class Graph {
     }
 
     public boolean findPath(String start, String finish, int length) {
-        if (length == 0) {
-            return start.equals(finish);
-        } else {
-            for (String neighbor : getNeighbors(start)) {
-                if (findPath(neighbor, finish, length - 1)) {
-                    return true;
-                }
+        int indexOfStart = indexOfNode(start);
+        int indexOfFinish = indexOfNode(finish);
+        boolean[][] distMatToPower = Helper.matrixToPower(disMat, length);
+        return distMatToPower[indexOfFinish][indexOfStart];
+    }
+
+    public int indexOfNode(String node) {
+        int index = -1;
+        Object[] keys = graph.keySet().toArray();
+        for (int i = 0; i < keys.length; i++) {
+            if (node.equals(keys[i])) {
+                index = i;
+                break;
             }
         }
-        return false;
+        return index;
+    }
+        // if (length == 0) {
+        //     return start.equals(finish);
+        // } else {
+        //     for (String neighbor : getNeighbors(start)) {
+        //         if (findPath(neighbor, finish, length - 1)) {
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
     }
 
     public boolean findPath(String start, String finish) {

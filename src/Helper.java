@@ -1,8 +1,7 @@
 public class Helper {
     public static boolean[][] matrixToPower(boolean[][] matrix, int power) {
-        boolean temp[][] = new boolean[matrix.length][matrix.length];
-
-        if (power > 1) {
+        if (power > 1 && power >= matrix.length) {
+            boolean temp[][] = new boolean[matrix.length][matrix.length];
             for (int i = 0; i < matrix.length; i++) {
                 temp[i] = new boolean[matrix.length];
                 for (int j = 0; j < matrix[i].length; j++) {
@@ -13,10 +12,8 @@ public class Helper {
                     temp[i][j] = sum ;
                 }
             }
+            return temp;
         } else
             return matrix;
-
-        // the result is now in 'temp', you could do this if you wanted:
-        return temp;
     }
 }

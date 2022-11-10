@@ -102,4 +102,15 @@ public class Graph {
         return index;
     }
 
+    public boolean findPath(String start, String finish) {
+        boolean isFound = false;
+        for (int i = graph.size(); i >= 0; i--) {
+            if (findPath(start, finish, i)) {
+                isFound = true;
+                break;
+            }
+        }
+        return isFound;
+    }
+
 }

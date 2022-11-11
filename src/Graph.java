@@ -8,8 +8,26 @@ public class Graph {
     public Graph() {
         graph = new HashMap<String, ArrayList<String>>();
     }
-
+    /*
+    * Quesion a: Crée la liste d’adjacence (liste des successeurs)
+    *   à partir d’un nœud de départ et d’arrivé. La méthode ne doit pas
+    *   autoriser la duplication des arcs.
+    *
+    *   Premiére étape:
+    *       d'abord, on verifie que le sommet start n'est pas précédemment
+    *       inseré dans la HashMap graph. Si ça le cas, on ajoute aux liste
+    *       des successeurs le sommet finish, Sinon, on insere un nouveau
+    *       élément au HashMap et on l'affecte une liste des successseurs
+    *       qui contient le sommet finish.
+    *
+    *   Deuxiéme étape:
+    *       d'abord, on verifie que le sommet finish est déja inseré dans
+    *       la HashMap graph. Si ça le cas, on l'ajoute et on l'affecte une
+    *       liste des successeurs vide.
+    * */
     public void addEdge(String start, String finish) {
+
+        //region Premiére étape
         if (graph.containsKey(start)) {
             graph.get(start).add(finish);
         } else {
@@ -17,13 +35,19 @@ public class Graph {
             list.add(finish);
             graph.put(start, list);
         }
+        //endregion
 
-        //check if the finish is not inserted yet in the graph, then insert it and give it an empty array list
+
+        //region Deuxiéme étape
         if (!graph.containsKey(finish)) {
             graph.put(finish, new ArrayList<String>());
         }
+        //endregion
     }
 
+    /*
+    * Question b: Affiche la liste des successeurs associée au graphe.
+    * */
     public void displayGraph() {
         System.out.println(this.graph);
     }
@@ -120,14 +144,11 @@ public class Graph {
     }
 
     public boolean isHamilton(ArrayList<String> path) {
-        boolean isHamilton = true;
-        for (int i = 0; i < path.size(); i++) {
-            if (!graph.get(path.get(i + 1)).contains(path.get(i)) || !graph.get(path.get(i)).contains(path.get(i + 1))) {
-                isHamilton = false;
-                break;
-            }
+        for (String node: path) {
+            if (getDegree(node) > 2)
+                return false;
         }
-        return isHamilton;
+        return true;
     }
 
     public boolean isEuler(ArrayList<String> path) {

@@ -78,9 +78,19 @@ public class Main {
 //        System.out.println("Answer: " + graph.findPath("A", "D", 5));
 
         graph.addEdge("a", "b");
+        graph.addEdge("a", "b");
+        graph.addEdge("a", "c");
+        graph.addEdge("a", "d");
+        graph.addEdge("a", "d");
+        graph.addEdge("b", "a");
+        graph.addEdge("b", "a");
         graph.addEdge("b", "c");
+        graph.addEdge("c", "b");
+        graph.addEdge("c", "a");
         graph.addEdge("c", "d");
-        graph.addEdge("d", "e");
+        graph.addEdge("d", "c");
+        graph.addEdge("d", "a");
+        graph.addEdge("d", "a");
 
         graph.displayGraph();
 
@@ -93,8 +103,9 @@ public class Main {
         path.add("b");
         path.add("c");
         path.add("d");
-        path.add("e");
+
         System.out.println("isEuler => " + graph.isEuler(path));
+        System.out.println("isHamilton => " + graph.isHamilton(path));
 
     }
 }

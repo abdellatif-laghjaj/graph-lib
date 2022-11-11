@@ -5,27 +5,15 @@ public class Graph {
     public HashMap<String, ArrayList<String>> graph;
     public boolean[][] disMat;
 
+    //initialize the graph
     public Graph() {
         graph = new HashMap<String, ArrayList<String>>();
     }
 
     /*
-     * Quesion a: Crée la liste d’adjacence (liste des successeurs)
-     *   à partir d’un nœud de départ et d’arrivé. La méthode ne doit pas
-     *   autoriser la duplication des arcs.
-     *
-     *   Premiére étape:
-     *       d'abord, on verifie que le sommet start n'est pas précédemment
-     *       inseré dans la HashMap graph. Si ça le cas, on ajoute aux liste
-     *       des successeurs le sommet finish, Sinon, on insere un nouveau
-     *       élément au HashMap et on l'affecte une liste des successseurs
-     *       qui contient le sommet finish.
-     *
-     *   Deuxiéme étape:
-     *       d'abord, on verifie que le sommet finish est déja inseré dans
-     *       la HashMap graph. Si ça le cas, on l'ajoute et on l'affecte une
-     *       liste des successeurs vide.
-     *
+     * addEdge method adds an edge between two vertices
+     * if the vertices are not present in the graph, it adds them
+     * else it adds the edge between the vertices
      * */
     public void addEdge(String start, String finish) {
 

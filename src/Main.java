@@ -43,69 +43,68 @@ public class Main {
 //        graph.displayNeighbors("A");
 //        System.out.println(graph.getDegree("A"));
 
-//        boolean[][] matrix = new boolean[3][3];
-//
-//        matrix[0][0] = false;
-//        matrix[0][1] = true;
-//        matrix[0][2] = false;
-//        matrix[1][0] = true;
-//        matrix[1][1] = true;
-//        matrix[1][2] = false;
-//        matrix[2][0] = false;
-//        matrix[2][1] = true;
-//        matrix[2][2] = false;
-//
-//        System.out.println("########\t Matrix A \t########");
-//        for (boolean[] booleans : matrix) {
-//            System.out.print("[\t");
-//            for (int j = 0; j < matrix.length; j++) {
-//                System.out.print(booleans[j] + "\t");
-//            }
-//            System.out.print("]\n");
-//        }
-//
-//        System.out.println("########\t Matrix A to power 2 \t########");
-//        boolean[][] matToPower2 = Helper.matrixToPower(matrix, 2);
-//        for (boolean[] booleans : matToPower2) {
-//            System.out.print("[\t");
-//            for (int j = 0; j < matToPower2.length; j++) {
-//                System.out.print(booleans[j] + "\t");
-//            }
-//            System.out.print("]\n");
-//        }
+        boolean[][] matrix = new boolean[3][3];
+
+        matrix[0][0] = false;
+        matrix[0][1] = true;
+        matrix[0][2] = false;
+        matrix[1][0] = true;
+        matrix[1][1] = true;
+        matrix[1][2] = false;
+        matrix[2][0] = false;
+        matrix[2][1] = true;
+        matrix[2][2] = false;
+
+        System.out.println("########\t Matrix A \t########");
+        for (boolean[] booleans : matrix) {
+            System.out.print("[\t");
+            for (int j = 0; j < matrix.length; j++) {
+                System.out.print(booleans[j] + "\t");
+            }
+            System.out.print("]\n");
+        }
+
+        System.out.println("########\t Matrix A to power 2 \t########");
+        boolean[][] matToPower2 = Helper.matrixToPower(matrix, 2);
+        for (boolean[] booleans : matToPower2) {
+            System.out.print("[\t");
+            for (int j = 0; j < matToPower2.length; j++) {
+                System.out.print(booleans[j] + "\t");
+            }
+            System.out.print("]\n");
+        }   
 
 //        System.out.println("There is a path between A & D in 5 steps?");
 //        System.out.println("Answer: " + graph.findPath("A", "D", 5));
 
-        graph.addEdge("a", "b");
-        graph.addEdge("a", "b");
-        graph.addEdge("a", "c");
-        graph.addEdge("a", "d");
-        graph.addEdge("a", "d");
-        graph.addEdge("b", "a");
-        graph.addEdge("b", "a");
-        graph.addEdge("b", "c");
-        graph.addEdge("c", "b");
-        graph.addEdge("c", "a");
-        graph.addEdge("c", "d");
-        graph.addEdge("d", "c");
-        graph.addEdge("d", "a");
-        graph.addEdge("d", "a");
 
-        graph.displayGraph();
+        graph.displayNeighbors("K");
+        System.out.println(graph.getDegree("E"));
 
-        graph.createDistMat(graph.graph);
+        //test findPath method
+        if (graph.findPath("A", "K")) {
+            System.out.println("There is a path between A and K");
+        } else {
+            System.out.println("There is no path between A and K");
+        }
 
-        graph.displayDistMat();
+        if (graph.findPath("A", "J", 3)) {
+            System.out.println("There is a path between A and J with length 3");
+        } else {
+            System.out.println("There is no path between A and J with length 3");
+        }
 
-        ArrayList<String> path = new ArrayList<String>();
-        path.add("a");
-        path.add("b");
-        path.add("c");
-        path.add("d");
+        //check if a path is eulerian or hamiltonian
+        if (graph.isEuler(graph.getNeighbors("A"))) {
+            System.out.println("The graph is eulerian");
+        } else {
+            System.out.println("The graph is not eulerian");
+        }
 
-        System.out.println("isEuler => " + graph.isEuler(path));
-        System.out.println("isHamilton => " + graph.isHamilton(path));
-
+        if (graph.isHamilton(graph.getNeighbors("A"))) {
+            System.out.println("The graph is hamiltonian");
+        } else {
+            System.out.println("The graph is not hamiltonian");
+        }
     }
 }

@@ -31,7 +31,7 @@ public class Main {
 //        graph.addEdge("Y", "Y");
 
 //        graph.displayGraph();
-//        graph.crateDistMat(graph.graph);
+//        graph.createDistMat(graph.graph);
 //        graph.displayDistMat();
 //
 //        graph.displayNeighbors("X");

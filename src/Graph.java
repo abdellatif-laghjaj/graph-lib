@@ -28,7 +28,7 @@ public class Graph {
         System.out.println(this.graph);
     }
 
-    public void crateDistMat(HashMap<String, ArrayList<String>> graph) {
+    public void createDistMat(HashMap<String, ArrayList<String>> graph) {
         int size = graph.size();
         disMat = new boolean[size][size];
 
@@ -71,16 +71,22 @@ public class Graph {
         System.out.println(getNeighbors(node));
     }
 
-    public int getDegree(String node) {
-        int degree = graph.get(node).size();
-        int size = graph.size();
-        for (int i = 0; i < size; i++) {
-            String key = (String) graph.keySet().toArray()[i];
+    public int getDegreeOut(String node) {
+        return graph.get(node).size();
+    }
+
+    public int getDegreeIn(String node) {
+        int degree = 0;
+        for (Object key: graph.keySet().toArray()) {
             if (graph.get(key).contains(node)) {
                 degree++;
             }
         }
         return degree;
+    }
+
+    public int getDegree(String node) {
+        return getDegreeOut(node) + getDegreeIn(node);
     }
 
     public boolean findPath(String start, String finish, int length) {
@@ -125,9 +131,16 @@ public class Graph {
     }
 
     public boolean isEuler(ArrayList<String> path) {
-        boolean isEuler = false;
-
-        return isEuler;
+        if (getDegreeIn(path.get(0)) != getDegreeOut(path.get(0)) - 1 || getDegreeIn(path.get(path.size() - 1)) != getDegreeOut(path.get(path.size() - 1)) + 1 ) {
+            return false;
+        } else {
+            for (int i = 1; i < path.size() - 1; i++) {
+                if (getDegreeIn(path.get(i)) != getDegreeOut(path.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
 }

@@ -65,14 +65,14 @@ public class Main {
         }
 
         System.out.println("########\t Matrix A to power 2 \t########");
-        boolean[][] matToPower2 = Helper.matrixToPower(matrix, 2);
+        boolean[][] matToPower2 = Graph.matrixToPower(matrix, 2);
         for (boolean[] booleans : matToPower2) {
             System.out.print("[\t");
             for (int j = 0; j < matToPower2.length; j++) {
                 System.out.print(booleans[j] + "\t");
             }
             System.out.print("]\n");
-        }   
+        }
 
 //        System.out.println("There is a path between A & D in 5 steps?");
 //        System.out.println("Answer: " + graph.findPath("A", "D", 5));

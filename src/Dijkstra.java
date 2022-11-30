@@ -10,41 +10,46 @@ public class Dijkstra {
 
         // Tableau contenant pour chaque sommet le poids total à parcourir pour y
         // accéder à partir de sommet src.
-        int[] dist = new int[0];
+        int[] dist = new int[graph[0].length];
 
         // sptSet[i] prend true, si le sommet i est traité
-        boolean[] sptSet = new boolean[0];
+        boolean[] sptSet = new boolean[graph[0].length];
 
         // Un tableau contenant pour chaque sommet son prédecesseur choisi.
-        int[] pred = new int[0];
+        int[] pred = new int[graph[0].length];
 
         /**
          * Phase d'initialisation (dist[], sptSet[] et pred[], dist [src])
          */
-        for (int i = 0; i < graph[0].length - 1; i++) {
-            dist[i] =
-                    sptSet[i] =
-                            pred[i] = -1;
+        for (int i = 0; i < graph[0].length; i++) {
+            if (i != src) {
+                dist[i] = Integer.MAX_VALUE;
+            }
+            sptSet[i] = false;
+            pred[i] = -1;
         }
-        dist[src] =
+
+        dist[src] = 0;
 
         /**
          * Module de recherche du plus court chemin pour tout les sommets
          */
-        for (int count = 0; count < graph[0].length - 1; count++) {
+        for (int count = 0; count < graph[0].length; count++) {
             // Choisir le sommet de distance minimale dans l'ensemble des sommets non encore
             // traités.
             int u = minDistance(dist, sptSet);
 
             // marquer le sommet comme traité
-            sptSet[u]
+            sptSet[u] = true;
 
-            for (int v = 0; v < graph[0].length - 1; v++) {
+            for (int v = 0; v < graph.length; v++) {
                 // Mettre à jour dist[v] et pred[v] sous condition (il n'est pas traité + il y'a
                 // une arrete de u vers v + la distance de src vers v à travers u est plus petite que la distance actuelle de v
-                if (/*condition 1*/ &&graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && /*condition 4*/ ){
+                if (sptSet[v] != true && graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && v != src){
                     //instruction 1
+                    dist[v] = dist[u] + graph[u][v];
                     //instruction 2
+                    pred[v] = u;
                 }
             }
 
@@ -65,8 +70,8 @@ public class Dijkstra {
 
         for (int v = 0; v < dist.length; v++) {
             if (sptSet[v] == false && dist[v] <= min) {
-                min =
-                        min_index =
+                min = dist[v];
+                min_index = v;
             }
         }
         return min_index;
@@ -90,10 +95,17 @@ public class Dijkstra {
      */
     public static void main(String[] args) {
 
-        int graph[][] = new int[][]{{0, 4, 0, 0, 0, 0, 0, 8, 0}, {4, 0, 8, 0, 0, 0, 0, 11, 0},
-                {0, 8, 0, 7, 0, 4, 0, 0, 2}, {0, 0, 7, 0, 9, 14, 0, 0, 0}, {0, 0, 0, 9, 0, 10, 0, 0, 0},
-                {0, 0, 4, 14, 10, 0, 2, 0, 0}, {0, 0, 0, 0, 0, 2, 0, 1, 6}, {8, 11, 0, 0, 0, 0, 1, 0, 7},
-                {0, 0, 2, 0, 0, 0, 6, 7, 0}};
+        int graph[][] = new int[][]{
+                {0,  4,  0,  0,  0,  0,  0,  8,  0},
+                {4,  0,  8,  0,  0,  0,  0,  11, 0},
+                {0,  8,  0,  7,  0,  4,  0,  0,  2},
+                {0,  0,  7,  0,  9,  14, 0,  0,  0},
+                {0,  0,  0,  9,  0,  10, 0,  0,  0},
+                {0,  0,  4,  14, 10, 0,  2,  0,  0},
+                {0,  0,  0,  0,  0,  2,  0,  1,  6},
+                {8,  11, 0,  0,  0,  0,  1,  0,  7},
+                {0,  0,  2,  0,  0,  0,  6,  7,  0}
+        };
 
         Dijkstra t = new Dijkstra();
         t.findShortPath(graph, 0);
